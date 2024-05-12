@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -30,8 +31,7 @@ class Dashboard extends BaseController
      */
     public function users(): string {
         $data = [
-            'users' => $this->ionAuth->users()->result(),
-            'ionAuth' => $this->ionAuth
+            'users' => $this->ionAuth->users()->result()
         ];
 
         return view("dashboard/users", $data);
@@ -42,6 +42,25 @@ class Dashboard extends BaseController
      */
     public function tests(): string {
         return view("dashboard/tests");
+    }
+
+    public function editUser($id): string {
+        $data = [
+            'user' => $this->ionAuth->user($id)->row()
+        ];
+        return view("dashboard/editUser", $data);
+    }
+
+    public function updateUser($id): RedirectResponse {
+
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'group' => [$this->request->getPost('admin') == null ? 1 : 0],
+        ];
+
+        $this->ionAuth->update($id, $data);
+        return redirect()->to("dashboard/users");
     }
 
 

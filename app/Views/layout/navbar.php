@@ -15,13 +15,13 @@ $ionAuth = new IonAuth();
         if($ionAuth->loggedIn()) {
             if($ionAuth->isAdmin()) {
                 echo '
-                    <div class="collapse navbar-collapse" id="dropdown">
+                    <div class="collapse navbar-collapse" id="dashboard">
                       <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <a class="nav-link dropdown-toggle" href="#" id="dashboard" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dashboard
                           </a>
-                          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown">
+                          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashboard">
                             <li><a class="dropdown-item" href="'.base_url("dashboard/").'">Overview</a></li>
                             <li><a class="dropdown-item" href="'.base_url("dashboard/tests").'">Tests</a></li>
                             <li><a class="dropdown-item" href="'.base_url("dashboard/users").'">Users</a></li>
