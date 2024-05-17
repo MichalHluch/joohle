@@ -34,7 +34,6 @@ $ionAuth = new IonAuth();
             echo '<a class="nav-link" href="'.base_url("/").'">Tests</a>';
             echo '<a class="nav-link" href="'.base_url("logout").'">Logout</a>';
         } else {
-            echo '<a class="nav-link" href="'.base_url("register").'">Information</a>';
             echo '<a class="nav-link" href="'.base_url("/").'">Login</a>';
             echo '<a class="nav-link" href="'.base_url("register").'">Register</a>';
         }

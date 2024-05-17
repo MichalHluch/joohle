@@ -15,6 +15,8 @@ $routes->get('logout', 'Auth::logout');
 
 $routes->get('register', 'Auth::register');
 $routes->post('register-complete', 'Auth::registerComplete');
+$routes->post('register-username', 'Auth::registerUsername');
+$routes->post('register-email', 'Auth::registerEmail');
 
 $routes->group('auth', ['filter' => 'auth'], function ($routes) {
 });

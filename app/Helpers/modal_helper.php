@@ -10,7 +10,7 @@ if (!function_exists('form_modal')) {
      * @param array|string $attributes List of attributes
      * @param array $default Default values
      */
-    function form_modal($idModal, $idRow, $heading, $message, $route, $type = "danger", $buttonText = "Smazat")
+    function form_modal($idModal, $idRow, $heading, $message, $route, $type = "danger", $buttonText = "Delete")
     {
         $result = "";
         $result .= "<div class=\"modal fade\" id=\"" . $idModal . "\">\n";
