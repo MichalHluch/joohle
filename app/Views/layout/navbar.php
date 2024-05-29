@@ -14,22 +14,7 @@ $ionAuth = new IonAuth();
       <?php
         if($ionAuth->loggedIn()) {
             if($ionAuth->isAdmin()) {
-                echo '
-                    <div class="collapse navbar-collapse" id="dashboard">
-                      <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="dashboard" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dashboard
-                          </a>
-                          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dashboard">
-                            <li><a class="dropdown-item" href="'.base_url("dashboard/").'">Overview</a></li>
-                            <li><a class="dropdown-item" href="'.base_url("dashboard/tests").'">Tests</a></li>
-                            <li><a class="dropdown-item" href="'.base_url("dashboard/users").'">Users</a></li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                ';
+                echo '<a class="nav-link" href="'.base_url("dashboard/").'">Dashboard</a>';
             }
             echo '<a class="nav-link" href="'.base_url("/").'">Tests</a>';
             echo '<a class="nav-link" href="'.base_url("logout").'">Logout</a>';

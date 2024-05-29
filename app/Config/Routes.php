@@ -27,7 +27,7 @@ $routes->group('dashboard', ['filter' => 'dashboard'], function ($routes) {
 
 
     $routes->get('users', 'Dashboard::users');
-    $routes->get('edit-user/(:num)', 'Dashboard::editUser/$1'); //Opens page with forms
-    $routes->post('update-user/(:num)', 'Dashboard::updateUser/$1');//Updates the user in the database
-    $routes->delete('delete-user/(:num)', 'Dashboard::deleteUser/$1');
+    $routes->get('edit-user/(:num)', 'Dashboard::editUser/$1'); //Opens page with forms.
+    $routes->post('update-user/(:num)', 'Dashboard::updateUser/$1');//Updates the user in the database.
+    $routes->delete('delete-user/(:num)', 'Dashboard::deleteUser/$1');//Deletes the user in the database.
 });

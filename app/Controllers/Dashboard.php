@@ -21,16 +21,8 @@ class Dashboard extends BaseController {
      * Shows login form.
      */
     public function index(): string {
-        return view("dashboard/index", ["title" => "Dashboard"]);
-    }
-
-    /**
-     * Shows all users
-     */
-    public function users(): string {
-        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard | Users"];
-
-        return view("dashboard/users", $data);
+        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard"];
+        return view("dashboard/index", $data);
     }
 
     /**
