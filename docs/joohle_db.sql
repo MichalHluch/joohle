@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema hluch
+-- Schema joohle
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema hluch
+-- Schema joohle
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `joohle` DEFAULT CHARACTER SET utf8 ;
 USE `joohle` ;
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_difficulty`
+-- Table `joohle`.`joohle_difficulty`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_difficulty` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_difficulty` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `deleted_at` DATETIME NULL,
@@ -31,9 +31,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_test`
+-- Table `joohle`.`joohle_test`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_test` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_test` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nazev` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NULL,
@@ -50,16 +50,16 @@ CREATE TABLE IF NOT EXISTS `hluch`.`joohle_test` (
   INDEX `fk_joohle_test_joohle_difficulty_idx` (`joohle_difficulty_id` ASC),
   CONSTRAINT `fk_joohle_test_joohle_difficulty`
     FOREIGN KEY (`joohle_difficulty_id`)
-    REFERENCES `hluch`.`joohle_difficulty` (`id`)
+    REFERENCES `joohle`.`joohle_difficulty` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_category`
+-- Table `joohle`.`joohle_category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_category` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_category` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `deleted_at` DATETIME NULL,
@@ -70,9 +70,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_attempt`
+-- Table `joohle`.`joohle_attempt`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_attempt` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_attempt` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `max_score` DOUBLE NOT NULL,
   `score` DOUBLE NOT NULL,
@@ -87,16 +87,16 @@ CREATE TABLE IF NOT EXISTS `hluch`.`joohle_attempt` (
   INDEX `fk_joohle_attempt_joohle_test1_idx` (`joohle_test_id` ASC),
   CONSTRAINT `fk_joohle_attempt_joohle_test1`
     FOREIGN KEY (`joohle_test_id`)
-    REFERENCES `hluch`.`joohle_test` (`id`)
+    REFERENCES `joohle`.`joohle_test` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_question_type`
+-- Table `joohle`.`joohle_question_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_question_type` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_question_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(255) NULL,
   `deleted_at` DATETIME NULL,
@@ -107,12 +107,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_question`
+-- Table `joohle`.`joohle_question`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_question` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_question` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `question` VARCHAR(255) NOT NULL,
-  `descrition` VARCHAR(255) NULL,
+  `description` VARCHAR(255) NULL,
   `max_score` DOUBLE NOT NULL,
   `joohle_test_id` INT NOT NULL,
   `joohle_question_type_id` INT NOT NULL,
@@ -124,21 +124,21 @@ CREATE TABLE IF NOT EXISTS `hluch`.`joohle_question` (
   INDEX `fk_joohle_question_joohle_question_type1_idx` (`joohle_question_type_id` ASC),
   CONSTRAINT `fk_joohle_question_joohle_test1`
     FOREIGN KEY (`joohle_test_id`)
-    REFERENCES `hluch`.`joohle_test` (`id`)
+    REFERENCES `joohle`.`joohle_test` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_joohle_question_joohle_question_type1`
     FOREIGN KEY (`joohle_question_type_id`)
-    REFERENCES `hluch`.`joohle_question_type` (`id`)
+    REFERENCES `joohle`.`joohle_question_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_answer`
+-- Table `joohle`.`joohle_answer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_answer` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_answer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `answer` VARCHAR(255) NOT NULL,
   `score` DOUBLE NOT NULL,
@@ -150,16 +150,16 @@ CREATE TABLE IF NOT EXISTS `hluch`.`joohle_answer` (
   INDEX `fk_joohle_answer_joohle_question1_idx` (`joohle_question_id` ASC),
   CONSTRAINT `fk_joohle_answer_joohle_question1`
     FOREIGN KEY (`joohle_question_id`)
-    REFERENCES `hluch`.`joohle_question` (`id`)
+    REFERENCES `joohle`.`joohle_question` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hluch`.`joohle_test_has_joohle_category`
+-- Table `joohle`.`joohle_test_has_joohle_category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hluch`.`joohle_test_has_joohle_category` (
+CREATE TABLE IF NOT EXISTS `joohle`.`joohle_test_has_joohle_category` (
   `joohle_test_id` INT NOT NULL,
   `joohle_category_id` INT NOT NULL,
   `deleted_at` DATETIME NULL,
@@ -170,12 +170,12 @@ CREATE TABLE IF NOT EXISTS `hluch`.`joohle_test_has_joohle_category` (
   INDEX `fk_joohle_test_has_joohle_category_joohle_test1_idx` (`joohle_test_id` ASC),
   CONSTRAINT `fk_joohle_test_has_joohle_category_joohle_test1`
     FOREIGN KEY (`joohle_test_id`)
-    REFERENCES `hluch`.`joohle_test` (`id`)
+    REFERENCES `joohle`.`joohle_test` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_joohle_test_has_joohle_category_joohle_category1`
     FOREIGN KEY (`joohle_category_id`)
-    REFERENCES `hluch`.`joohle_category` (`id`)
+    REFERENCES `joohle`.`joohle_category` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
