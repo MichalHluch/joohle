@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => 'localhost',
         'username'     => 'root',
         'password'     => '',
-        'database'     => 'hluch',
+        'database'     => 'joohle',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => 'joohle_',
         'pConnect'     => false,

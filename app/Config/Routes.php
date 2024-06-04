@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'TestController::index');
-
+$routes->get('category/(:num)', 'TestController::categoryRender/$1');
 
 $routes->get('login', 'Auth::login');
 $routes->post('login-complete', 'Auth::loginComplete');

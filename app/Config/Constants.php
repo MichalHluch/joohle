@@ -1,4 +1,8 @@
 <?php
+$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . (substr(dirname($_SERVER['SCRIPT_NAME']), -1) == '/' ? '' : '/');
+$base_url = str_contains($base_url, 'localhost') ? $base_url : str_replace('http://', 'https://', $base_url);
+defined('BASE_URL') || define('BASE_URL', $base_url);
+
 
 /*
  | --------------------------------------------------------------------
