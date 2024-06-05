@@ -4,56 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e8574f178e6c10a7a26547474d4ddbf",
+    "content-hash": "6ba8b16d4e98d122bcf42a5cfaf85051",
     "packages": [
-        {
-            "name": "axllent/jquery",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/axllent/jquery.git",
-                "reference": "a7e0f33797bb8c87a2d18666dfd685da23b513e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/axllent/jquery/zipball/a7e0f33797bb8c87a2d18666dfd685da23b513e5",
-                "reference": "a7e0f33797bb8c87a2d18666dfd685da23b513e5",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "jquery.js"
-                    ],
-                    "files": [
-                        "jquery.min.js",
-                        "jquery.slim.js",
-                        "jquery.slim.min.js"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "JS Foundation and other contributors"
-                }
-            ],
-            "description": "jQuery JavaScript Library",
-            "homepage": "http://jquery.com",
-            "support": {
-                "forum": "http://forum.jquery.com",
-                "irc": "irc://irc.freenode.org/jquery",
-                "issues": "https://github.com/jquery/jquery/issues",
-                "source": "https://github.com/jquery/jquery",
-                "wiki": "http://docs.jquery.com/"
-            },
-            "time": "2023-08-29T05:11:36+00:00"
-        },
         {
             "name": "benedmunds/codeigniter-ion-auth",
             "version": "4.x-dev",
@@ -184,12 +136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-escaper.git",
-                "reference": "20fc1043953839c7512cecaab9721a032d0e5880"
+                "reference": "9d6dd02ff8545709f6a508254bdb88b353c9abf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/20fc1043953839c7512cecaab9721a032d0e5880",
-                "reference": "20fc1043953839c7512cecaab9721a032d0e5880",
+                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/9d6dd02ff8545709f6a508254bdb88b353c9abf5",
+                "reference": "9d6dd02ff8545709f6a508254bdb88b353c9abf5",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +191,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-05-06T01:24:54+00:00"
+            "time": "2024-06-03T01:49:43+00:00"
         },
         {
             "name": "psr/log",
@@ -298,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "72d3b6efc4b92e83a4abca6f5bc0cd7e6fd25931"
+                "reference": "093276119d807c5f7c77b860c1e1dafff1a46b69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/72d3b6efc4b92e83a4abca6f5bc0cd7e6fd25931",
-                "reference": "72d3b6efc4b92e83a4abca6f5bc0cd7e6fd25931",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/093276119d807c5f7c77b860c1e1dafff1a46b69",
+                "reference": "093276119d807c5f7c77b860c1e1dafff1a46b69",
                 "shasum": ""
             },
             "replace": {
@@ -341,7 +293,7 @@
                 "issues": "https://github.com/twbs/bootstrap/issues",
                 "source": "https://github.com/twbs/bootstrap/tree/main"
             },
-            "time": "2024-05-02T07:19:47+00:00"
+            "time": "2024-06-04T15:28:45+00:00"
         }
     ],
     "packages-dev": [
@@ -527,12 +479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "c5ee33df86c06b3278c670f64273b1ba768a0744"
+                "reference": "daaadc3bae458908aa477b90a8932e7da9253f22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c5ee33df86c06b3278c670f64273b1ba768a0744",
-                "reference": "c5ee33df86c06b3278c670f64273b1ba768a0744",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/daaadc3bae458908aa477b90a8932e7da9253f22",
+                "reference": "daaadc3bae458908aa477b90a8932e7da9253f22",
                 "shasum": ""
             },
             "require": {
@@ -578,7 +530,7 @@
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
                 "source": "https://github.com/nikic/PHP-Parser/tree/master"
             },
-            "time": "2024-04-19T12:04:10+00:00"
+            "time": "2024-06-03T06:24:19+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1028,12 +980,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4a801ecbfd15a7cffdb05abae50d413b808ab110"
+                "reference": "b65f3a279a0e14b2a66aa83024d11b14817bae00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4a801ecbfd15a7cffdb05abae50d413b808ab110",
-                "reference": "4a801ecbfd15a7cffdb05abae50d413b808ab110",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b65f3a279a0e14b2a66aa83024d11b14817bae00",
+                "reference": "b65f3a279a0e14b2a66aa83024d11b14817bae00",
                 "shasum": ""
             },
             "require": {
@@ -1121,7 +1073,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-11T05:32:49+00:00"
+            "time": "2024-06-03T05:41:42+00:00"
         },
         {
             "name": "psr/container",
@@ -2231,5 +2183,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
