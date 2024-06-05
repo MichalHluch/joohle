@@ -10,9 +10,9 @@ class TestHasCategoryModel extends Model
     protected $primaryKey       = 'joohle_test_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['joohle_test_id', 'joohle_category_id'];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

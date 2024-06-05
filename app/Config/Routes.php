@@ -7,6 +7,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'TestController::index');
 $routes->get('category/(:num)', 'TestController::categoryRender/$1');
+$routes->get('test/(:num)', 'TestController::test/$1');
+$routes->get('test-attempt/(:num)', 'TestController::testAttempt/$1');
+$routes->post('test-password', 'TestController::testPassword');
+$routes->get('test-start/(:num)', 'TestController::testFree/$1');
+$routes->post('test-complete', 'TestController::testComplete');
 
 $routes->get('login', 'Auth::login');
 $routes->post('login-complete', 'Auth::loginComplete');

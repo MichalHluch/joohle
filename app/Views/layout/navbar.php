@@ -8,8 +8,8 @@ $ionAuth = new IonAuth();
 
 <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
   <div class="container-fluid">
-      <?php echo '<a class="navbar-brand mx-auto fw-bold" href="'.base_url("/").'">JOOHLE</a>'; ?>
-    <div class="navbar-nav mx-auto">
+      <?php echo '<a class="navbar-brand mx-3 fw-bold" href="'.base_url("/").'">JOOHLE</a>'; ?>
+    <div class="navbar-nav  mx-3">
 
       <?php
         if($ionAuth->loggedIn()) {

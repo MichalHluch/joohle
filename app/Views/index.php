@@ -39,7 +39,7 @@ echo $this->section("content");
                     <h5 class="card-title h4 text-dark fw-bolder">'.$test -> nazev.'</h5>
                     <p class="card-text text-muted fw-bolder"><span class="text-muted fw-normal">'.$test -> description.'</span></p>
                 </div>
-                <div class="card-footer mb-3 bg-transparent border-0">' . anchor('test/' . $test->id, 'Open', 'class="btn btn-outline-primary"') . '</div>
+                <div class="card-footer mb-3 bg-transparent border-0">' . anchor('test/' . $test->id, 'Start', 'class="btn btn-outline-primary"') . '</div>
           </div>';
         }
 

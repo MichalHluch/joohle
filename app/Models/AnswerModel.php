@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CategoryModel extends Model
-{
-    protected $table            = 'category';
+class AnswerModel extends Model {
+
+    protected $table            = 'answer';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';

@@ -2,9 +2,9 @@ INSERT INTO joohle_question_type (id, type) VALUES
 (1, 'volná');
 
 INSERT INTO joohle_difficulty (id, name) VALUES
-(1, 'lehká'),
-(2, 'střední'),
-(3, 'těžká');
+(1, 'easy'),
+(2, 'medium'),
+(3, 'hard');
 
 INSERT INTO joohle_category (id, name) VALUES
 (1, 'Elektronika'),
