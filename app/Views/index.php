@@ -5,16 +5,7 @@ echo $this->section("content");
 ?>
 
         <?php
-        echo '<div class="container px-5">';
-        echo '  <div class="row gx-5 justify-content-center">';
-        echo '    <div class="col-lg-8 col-xl-6">';
-        echo '      <div class="text-center">';
-        echo '        <h1 class="fw-bolder mb-5">TESTS</h1>';
-        echo '      </div>';
-        echo '    </div>';
-        echo '  </div>';
-        echo '</div>';
-        echo '<div class="row d-flex justify-content-center ">';
+        echo '<div class="row d-flex justify-content-center pb-4">';
         echo '<div class="text-center">';
         echo '<h4>Categories</h4>';
         echo '</div>';
