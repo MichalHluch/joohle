@@ -2,26 +2,40 @@
 
 namespace App\Controllers;
 
+use App\Models\CategoryModel;
+use App\Models\TestModel;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use IonAuth\Libraries\IonAuth;
+use App\Models\AttemptModel;
 
 class Dashboard extends BaseController {
 
     var $ionAuth;
+    var $attemptModel;
+    var $testModel;
+    var $categoriesModel;
+
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) {
         parent::initController($request, $response, $logger);
         $this->ionAuth = new IonAuth();
+
+        $this->attemptModel = new AttemptModel();
+        $this->testModel = new TestModel();
+        $this->categoriesModel = new CategoryModel();
     }
 
     /**
      * Shows login form.
      */
     public function index(): string {
-        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard"];
+        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard",
+            'attempts' => $this->attemptModel->countAll(),
+            'tests' => $this->testModel->countAll(),
+            'categories' => $this->categoriesModel->countAll()];
         return view("dashboard/index", $data);
     }
 
@@ -48,7 +62,7 @@ class Dashboard extends BaseController {
 
         $this->updateGroups($id, $this->request->getPost('groups'));
         $this->ionAuth->update($id, $data);
-        return redirect()->to("dashboard/users");
+        return redirect()->to("dashboard/");
     }
 
     public function updateGroups($id, $newGroups): void {

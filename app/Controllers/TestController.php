@@ -136,6 +136,7 @@ class TestController extends BaseController {
             'started_at' => $started,
             'finished_at' => $finished,
         );
+
         $this->attemptModel->save($data);
         $this->session->remove('testAttempt');
         $this->session->remove('timeAttempt');

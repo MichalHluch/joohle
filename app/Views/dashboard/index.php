@@ -8,6 +8,7 @@ echo $this->section("content");
 
 $ionAuth = new IonAuth();
 ?>
+    <h1 class="text-center fw-bold">DASHBOARD</h1>
     <div class="justify-content-center">
     <h2 class="mb-5 text-white">Stats Card</h2>
     <div class="row justify-content-center pb-5">
@@ -29,7 +30,7 @@ $ionAuth = new IonAuth();
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">ATTEMPTS</h5>
-                            <span class="h2 font-weight-bold mb-0">0</span>
+                            <span class="h2 font-weight-bold mb-0"><?=$attempts?></span>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,20 @@ $ionAuth = new IonAuth();
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">TESTS</h5>
-                            <span class="h2 font-weight-bold mb-0">0</span>
+                            <span class="h2 font-weight-bold mb-0"><?=$tests?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">CATEGORIES</h5>
+                            <span class="h2 font-weight-bold mb-0"><?=$categories?></span>
                         </div>
                     </div>
                 </div>
@@ -50,7 +64,6 @@ $ionAuth = new IonAuth();
     </div>
 
     <div class="col-lg-10 col-md-10 col-12 offset-lg-1 offset-md-1 pt-5">
-        <h1 class="text-center fw-bold pb-5">USERS</h1>
 
         <?php
         $table = new Table();

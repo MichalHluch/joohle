@@ -7,13 +7,13 @@ echo $this->section("content");
         <?php
         echo '<div class="row d-flex justify-content-center pb-4">';
         echo '<div class="text-center">';
-        echo '<h4>Categories</h4>';
+        echo '<h1>CATEGORIES</h1>';
         echo '</div>';
         foreach($categories as $category) {
             echo '<div class="card border-1 m-3" style="max-width: 10rem;">';
             $echo_card = '
                 <div class="card-body">
-                    <p class="card-title text-dark fw-bolder">'.$category -> name.'</p>
+                    <p class="card-title text-dark text-center fw-bolder">'.$category -> name.'</p>
                 </div></div>';
             echo anchor("category/".$category -> id.'/', $echo_card, 'class="text-decoration-none"');
         }
@@ -21,7 +21,7 @@ echo $this->section("content");
         echo '</div>';
         echo '<div class="row d-flex justify-content-center mt-5">';
         echo '<div class="text-center">';
-        echo '<h4>All tests</h4>';
+        echo '<h1>TESTS</h1>';
         echo '</div>';
         foreach($tests as $test) {
             echo '
