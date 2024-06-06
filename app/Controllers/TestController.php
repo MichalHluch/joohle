@@ -52,7 +52,7 @@ class TestController extends BaseController {
         $data["tests"] = $this->testModel->orderBy('id', 'ASC')->findAll();
         $data["pager"] = $this->testHasCategoryModel->pager;
         $data["title"] = "Tests in category " . $data["categories"][0]->name;
-        return $this->ionAuth->loggedIn() ? view('tests/category', $data) : redirect()->to('login');
+        return view('/tests/category', $data);
     }
     public function test($id): string|RedirectResponse {
         $user = $this->ionAuth->user()->row();
@@ -62,7 +62,7 @@ class TestController extends BaseController {
         $data["title"] = "Test " . $data["test"]->nazev;
         $data["testAttempt"] = $this->session->testAttempt;
         $data["timeAttempt"] = $this->session->timeAttempt;
-        return $this->ionAuth->loggedIn() ? view('tests/testDetails', $data) : redirect()->to('login');
+        return view('/tests/testDetails', $data);
     }
     public function testPassword(): string|RedirectResponse {
         $testId = $this->request->getPost("testId");
@@ -75,9 +75,9 @@ class TestController extends BaseController {
                 'timeAttempt' => $now,
             ];
             $this->session->set($newdata);
-            return redirect()->to('test-attempt/'.$testId);
+            return redirect()->to('/test-attempt/'.$testId);
         } else {
-            return redirect()->to('test/'.$testId);
+            return redirect()->to('/test/'.$testId);
         }
     }
     public function testFree($id): string|RedirectResponse {
@@ -87,7 +87,7 @@ class TestController extends BaseController {
             'timeAttempt' => $now,
         ];
         $this->session->set($newdata);
-        return redirect()->to('test-attempt/'.$id);
+        return redirect()->to('/test-attempt/'.$id);
     }
     public function testAttempt($id): string|RedirectResponse {
         $data["testAttempt"] = $this->session->testAttempt;

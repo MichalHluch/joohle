@@ -6,12 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'TestController::index');
-$routes->get('category/(:num)', 'TestController::categoryRender/$1');
-$routes->get('test/(:num)', 'TestController::test/$1');
-$routes->get('test-attempt/(:num)', 'TestController::testAttempt/$1');
-$routes->post('test-password', 'TestController::testPassword');
-$routes->get('test-start/(:num)', 'TestController::testFree/$1');
-$routes->post('test-complete', 'TestController::testComplete');
 
 $routes->get('login', 'Auth::login');
 $routes->post('login-complete', 'Auth::loginComplete');
@@ -23,8 +17,13 @@ $routes->post('register-complete', 'Auth::registerComplete');
 $routes->post('register-username', 'Auth::registerUsername');
 $routes->post('register-email', 'Auth::registerEmail');
 
-$routes->group('auth', ['filter' => 'auth'], function ($routes) {
-
+$routes->group('/', ['filter' => 'auth'], function ($routes) {
+    $routes->get('category/(:num)', 'TestController::categoryRender/$1');
+    $routes->get('test/(:num)', 'TestController::test/$1');
+    $routes->get('test-attempt/(:num)', 'TestController::testAttempt/$1');
+    $routes->post('test-password', 'TestController::testPassword');
+    $routes->get('test-start/(:num)', 'TestController::testFree/$1');
+    $routes->post('test-complete', 'TestController::testComplete');
 });
 
 $routes->group('dashboard', ['filter' => 'dashboard'], function ($routes) {

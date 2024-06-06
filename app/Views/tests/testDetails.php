@@ -19,7 +19,7 @@ echo $this->section("content");
         <?php
         if (count($attempts) < $test->max_attempts) {
             if ($test->required_password == 1) {
-                $password = ['id' => 'password', 'name' => 'password', 'type' => 'password', 'class' => 'form-control', 'placeholder' => 'Password'];
+                $password = ['id' => 'password', 'name' => 'password', 'type' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', "required" => true];
                 echo form_open("test-password");
                 echo '<input type="hidden" name="testId" value="' . $test->id . '">';
                 echo '<div class="input-group w-25">';
@@ -29,7 +29,7 @@ echo $this->section("content");
                 echo '</div>';
                 echo form_close();
             } else {
-                echo anchor('test-start/' . $test->id, 'Start', 'class="btn btn-primary"');
+                echo anchor('/test-start/' . $test->id, 'Start', 'class="btn btn-primary"');
             }
         } else {
             echo '<div class="d-block-inline">';
