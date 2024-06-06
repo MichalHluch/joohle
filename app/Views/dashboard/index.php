@@ -75,7 +75,7 @@ $ionAuth = new IonAuth();
         foreach($users as $user) {
 
             $editBtn = anchor('dashboard/edit-user/' . $user->id, 'Edit', 'class="btn btn-outline-primary"');
-            $deleteBtn = "<button type=\"button\" class=\"btn btn-outline-primary ms-3\" data-bs-toggle=\"modal\" data-bs-target=\"#modal" . $user->id . "\">Delete User</button>";
+            $deleteBtn = "<button type=\"button\" class=\"btn btn-outline-danger ms-3\" data-bs-toggle=\"modal\" data-bs-target=\"#modal" . $user->id . "\">Delete</button>";
 
             $userGroups = $ionAuth->getUsersGroups($user->id)->getResult();
 
@@ -88,7 +88,7 @@ $ionAuth = new IonAuth();
 
             $table->addRow($user->id, $user->first_name, $user->last_name, $user->username, $user->email, $groupList, $editBtn . $deleteBtn);
 
-            echo form_modal("modal" . $user->id, $user->id, "Delete User", "Do you really want to delete " . $user->username . "?", "dashboard/delete-user/" . $user->id);
+            echo form_modal("modal" . $user->id, $user->id, "Delete User", "Do you really want to delete user \"" . $user->username . "\"?", "dashboard/delete-user/" . $user->id);
         }
 
         echo $table->generate();
