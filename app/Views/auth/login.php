@@ -34,7 +34,7 @@ $password = ['id' => 'password', 'name' => 'password', 'type' => 'password', 'cl
         <div class="row col-lg-6 col-md-8 col-10 offset-lg-3 offset-md-2 offset-1 pt-5">
             <button type="submit" class="btn btn-primary btn-block">Login</button>
             <?php
-            echo anchor('login', "Don't have an account?", ['class' => 'text-center pt-3']);
+            echo anchor('register', "Don't have an account?", ['class' => 'text-center pt-3']);
             ?>
 
         </div>
