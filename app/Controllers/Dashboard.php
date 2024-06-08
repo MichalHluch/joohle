@@ -35,8 +35,12 @@ class Dashboard extends BaseController {
         $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard",
             'attempts' => $this->attemptModel->countAll(),
             'tests' => $this->testModel->countAll(),
-            'categories' => $this->categoriesModel->countAll()];
+            'categories' => $this->categoriesModel->where('deleted_at', null)->countAllResults()];
         return view("dashboard/index", $data);
+    }
+
+    public function users(): string {
+        return view("dashboard/users/index", ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard | Users"]);
     }
 
     /**
@@ -52,7 +56,7 @@ class Dashboard extends BaseController {
     }
 
     public function editUser($id): string {
-        $data = ['user' => $this->ionAuth->user($id)->row(), "title" => "Dashboard | Edit User"];
+        $data = ['user' => $this->ionAuth->user($id)->row(), "title" => "Dashboard | User Edit"];
         return view("dashboard/editUser", $data);
     }
 
@@ -93,16 +97,43 @@ class Dashboard extends BaseController {
         }
     }
 
-
-    public function createTest() {
-
+    public function categories(): string {
+        return view("dashboard/categories/index", ["categories" => $this->categoriesModel->where('deleted_at', null)->findAll(), "title" => "Dashboard | Categories"]);
     }
 
-    public function editTest($id) {
-
+    public function editCategory($id): string {
+        $data = ['category' => $this->categoriesModel->where("id", $id)->first(), "title" => "Dashboard | Category Edit"];
+        return view("dashboard/categories/editCategory", $data);
     }
 
-    public function deleteTest($id) {
+    public function updateCategory($id): RedirectResponse {
+        // Load the request and model
+        $name = $this->request->getVar('name');
 
+        // Update with human-readable datetime
+        $this->categoriesModel->set([
+            'name' => $name,
+            'updated_at' => date('Y-m-d H:i:s')
+        ])->where('id', $id)->update();
+
+        // Redirect or return a response
+        return redirect()->to('dashboard/categories');
+    }
+
+
+    public function addCategory(): string {
+        return view("dashboard/categories/addCategory", ["title" => "Dashboard | Create Category"]);
+    }
+
+    public function createCategory(): RedirectResponse {
+        $this->categoriesModel->insert(['name' => $this->request->getPost("name")]);
+        return redirect()->to('dashboard/categories');
+    }
+
+    public function deleteCategory($id): RedirectResponse {
+        $this->categoriesModel->set([
+            'deleted_at' => date('Y-m-d H:i:s')
+        ])->where('id', $id)->update();
+        return redirect()->route('dashboard/categories');
     }
 }

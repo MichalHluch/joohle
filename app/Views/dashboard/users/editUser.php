@@ -5,22 +5,21 @@ use IonAuth\Libraries\IonAuth;
 echo $this->extend("layout/master");
 echo $this->section("content");
 
-
 echo form_open("dashboard/update-user/" . $user->id);
 
 $ionAuth = new IonAuth();
 ?>
     <div class="col-lg-4 col-md-8 col-10 offset-lg-4 offset-md-2 offset-1 pt-5">
-        <h1 class="text-center fw-bold">EDIT USER</h1>
+        <h1 class="text-center fw-bold">USER EDIT</h1>
 
 
         <div class="pt-3">
-            <label for="username">First Name:</label>
+            <label for="first_name">First Name:</label>
             <input type="text" name="first_name" class="form-control" id="first_name" value="<?=$user->first_name?>" required>
         </div>
 
         <div class="pt-3">
-            <label for="username">Last Name: </label>
+            <label for="last_name">Last Name: </label>
             <input type="text" name="last_name" class="form-control" id="last_name" value="<?=$user->last_name?>" required>
         </div>
 
