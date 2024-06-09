@@ -32,10 +32,7 @@ class Dashboard extends BaseController {
      * Shows login form.
      */
     public function index(): string {
-        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard",
-            'attempts' => $this->attemptModel->countAll(),
-            'tests' => $this->testModel->countAll(),
-            'categories' => $this->categoriesModel->where('deleted_at', null)->countAllResults()];
+        $data = ['users' => $this->ionAuth->users()->result(), 'title' => "Dashboard", 'attempts' => $this->attemptModel->where('deleted_at', null)->countAllResults(), 'tests' => $this->testModel->where('deleted_at', null)->countAllResults(), 'categories' => $this->categoriesModel->where('deleted_at', null)->countAllResults()];
         return view("dashboard/index", $data);
     }
 
@@ -110,11 +107,18 @@ class Dashboard extends BaseController {
         // Load the request and model
         $name = $this->request->getVar('name');
 
+        $picture = $this->request->getFile('pic');
+        $img_name = $picture === null ? null : "img-" . $picture->getCTime() . '.' . $picture->getClientExtension();
+
+
+        $data = ['name' => $name, 'updated_at' => date('Y-m-d H:i:s')];
+        if($img_name != null) {
+            $picture->move('assets/img/', $img_name);
+            $data['img_path'] = $img_name;
+        }
+
         // Update with human-readable datetime
-        $this->categoriesModel->set([
-            'name' => $name,
-            'updated_at' => date('Y-m-d H:i:s')
-        ])->where('id', $id)->update();
+        $this->categoriesModel->set($data)->where('id', $id)->update();
 
         // Redirect or return a response
         return redirect()->to('dashboard/categories');
@@ -126,14 +130,26 @@ class Dashboard extends BaseController {
     }
 
     public function createCategory(): RedirectResponse {
-        $this->categoriesModel->insert(['name' => $this->request->getPost("name")]);
+        $picture = $this->request->getFile('pic');
+        if($picture === null) return redirect()->to('dashboard/');
+        $name = "img-" . $picture->getCTime() . '.' . $picture->getClientExtension();
+        $picture->move('assets/img/', $name);
+        $this->categoriesModel->insert(['name' => $this->request->getPost("name"), 'img_path' => $name]);
         return redirect()->to('dashboard/categories');
     }
 
     public function deleteCategory($id): RedirectResponse {
-        $this->categoriesModel->set([
-            'deleted_at' => date('Y-m-d H:i:s')
-        ])->where('id', $id)->update();
+        $this->categoriesModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('id', $id)->update();
         return redirect()->route('dashboard/categories');
     }
+
+    public function attempts(): string {
+        return view("dashboard/attempts/index", ["attempts" => $this->attemptModel->select("attempt.id as attempt_id, attempt.*, users.id as user_id, users.username, test.nazev, test.id as test_id")->join('users', 'users.id = user_id', 'left')->join('test', 'test.id = attempt.joohle_test_id', 'left')->findAll(), "title" => "Dashboard | Attempts"]);
+    }
+
+    public function deleteAttempt($id): RedirectResponse {
+        $this->attemptModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('id', $id)->update();
+        return redirect()->route("dashboard/attempts");
+    }
+
 }

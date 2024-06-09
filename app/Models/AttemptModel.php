@@ -12,7 +12,7 @@ class AttemptModel extends Model {
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['max_score', 'score', 'user_id', 'joohle_test_id', 'started_at', 'finished_at'];
+    protected $allowedFields    = ['max_score', 'score', 'user_id', 'joohle_test_id', 'started_at', 'finished_at', 'deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

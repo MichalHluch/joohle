@@ -12,8 +12,9 @@ echo $this->section("content");
         foreach($categories as $category) {
             echo '<div class="card border-1 m-3" style="max-width: 10rem;">';
             $echo_card = '
+                <img src="'.base_url("/assets/img/" . $category->img_path).'" class="card-img-top" alt="cardimg">
                 <div class="card-body">
-                    <p class="card-title text-dark text-center fw-bolder">'.$category -> name.'</p>
+                <p class="card-title text-dark text-center fw-bolder">'.$category -> name.'</p>
                 </div></div>';
             echo anchor("/category/".$category -> id.'/', $echo_card, 'class="text-decoration-none"');
         }

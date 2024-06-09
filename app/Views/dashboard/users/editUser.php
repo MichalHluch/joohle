@@ -5,7 +5,7 @@ use IonAuth\Libraries\IonAuth;
 echo $this->extend("layout/master");
 echo $this->section("content");
 
-echo form_open("dashboard/update-user/" . $user->id);
+echo form_open("dashboard/update-user/" . $attempt->id);
 
 $ionAuth = new IonAuth();
 ?>
@@ -15,22 +15,22 @@ $ionAuth = new IonAuth();
 
         <div class="pt-3">
             <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" class="form-control" id="first_name" value="<?=$user->first_name?>" required>
+            <input type="text" name="first_name" class="form-control" id="first_name" value="<?=$attempt->first_name?>" required>
         </div>
 
         <div class="pt-3">
             <label for="last_name">Last Name: </label>
-            <input type="text" name="last_name" class="form-control" id="last_name" value="<?=$user->last_name?>" required>
+            <input type="text" name="last_name" class="form-control" id="last_name" value="<?=$attempt->last_name?>" required>
         </div>
 
         <div class="pt-3">
             <label for="username">Username:</label>
-            <input type="text" name="username" class="form-control" id="username" value="<?=$user->username?>" required>
+            <input type="text" name="username" class="form-control" id="username" value="<?=$attempt->username?>" required>
         </div>
 
         <div class="pt-3">
             <label for="email">Email:</label>
-            <input type="email" name="email" class="form-control" id="email" value="<?=$user->email?>" required>
+            <input type="email" name="email" class="form-control" id="email" value="<?=$attempt->email?>" required>
         </div>
 
 
@@ -40,7 +40,7 @@ $ionAuth = new IonAuth();
             <select id="groups" name="groups" data-placeholder="Select Groups" multiple data-multi-select required>
                 <?php
                 foreach($ionAuth->groups()->result() as $group) {
-                    $selected = $ionAuth->inGroup($group->id, $user->id) ? 'selected' : '';
+                    $selected = $ionAuth->inGroup($group->id, $attempt->id) ? 'selected' : '';
                     echo '<option value="' . $group->id . '" ' . $selected . '>' . $group->name . '</option>';
                 }
                 ?>
