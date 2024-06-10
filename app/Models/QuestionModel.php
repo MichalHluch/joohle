@@ -12,7 +12,7 @@ class QuestionModel extends Model {
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['question', 'description', 'max_score', 'joohle_test_id', 'joohle_question_type_id', 'deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

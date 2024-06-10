@@ -36,6 +36,9 @@ $routes->group('dashboard', ['filter' => 'dashboard'], function ($routes) {
     $routes->get('add-test', 'Dashboard::addTest');
     $routes->post('create-test', 'Dashboard::createTest');
 
+    $routes->post('create-question', 'Dashboard::createQuestion');
+    $routes->delete('delete-question/(:num)', 'Dashboard::deleteQuestion/$1');
+
     //attempts
     $routes->get('attempts', 'Dashboard::attempts');
     $routes->delete('delete-attempt/(:num)', 'Dashboard::deleteAttempt/$1');

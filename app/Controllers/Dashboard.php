@@ -60,7 +60,7 @@ class Dashboard extends BaseController {
         return view("dashboard/tests/index", ["tests" => $this->testModel->where('deleted_at', null)->findAll(), "title" => "Dashboard | Categories"]);
     }
     public function editTest($id): string {
-        $data = ['test' => $this->testModel->where("id", $id)->first(), 'difficulty' => $this->difficultyModel->orderBy('id', 'ASC')->findAll(), "title" => "Dashboard | Test Edit"];
+        $data = ['test' => $this->testModel->where("id", $id)->first(), 'difficulty' => $this->difficultyModel->orderBy('id', 'ASC')->findAll(), 'questions' => $this->questionModel->orderBy('id', 'ASC')->where("joohle_test_id", $id)->findAll(), 'answers' => $this->answerModel->orderBy('id', 'ASC')->findAll(), "title" => "Dashboard | Test Edit"];
         return view("dashboard/tests/editTest", $data);
     }
     public function updateTest($id): RedirectResponse {
@@ -100,17 +100,81 @@ class Dashboard extends BaseController {
         return redirect()->to('dashboard/tests');
 
     }
-    public function deleteTest($id): string {
+    public function deleteTest($id): RedirectResponse {
         return view("dashboard/tests", ["title" => "Dashboard | Test delete"]);
     }
     public function addTest(): string {
-        return view("dashboard/tests/add", ["title" => "Dashboard | Test add"]);
+        return view("dashboard/tests/addTest", ["title" => "Dashboard | Test add", 'difficulty' => $this->difficultyModel->orderBy('id', 'ASC')->findAll()]);
     }
-    public function createTest(): string {
-        $this->categoriesModel->insert(['name' => $this->request->getPost("name")]);
-        return redirect()->to('dashboard/categories');
+    public function createTest(): RedirectResponse {
+        $name = $this->request->getVar('name');
+        $description = $this->request->getVar('description');
+        $max_attempts = $this->request->getVar('max_attempts');
+        if ($this->request->getVar('question_amount') == ""){
+            $question_amount = 1;
+        } else {
+            $question_amount = $this->request->getVar('question_amount');
+        }
+        if ($this->request->getVar('shuffle') == NULL){
+            $shuffle = 0;
+        } else {
+            $shuffle = 1;
+        }
+        if ($this->request->getVar('password') == ""){
+            $required_password = 0;
+        } else {
+            $required_password = 1;
+        }
+        $password = $this->request->getVar('password');
+        $difficulty = $this->request->getVar('difficulty');
+
+        $this->testModel->insert([
+            'nazev' => $name,
+            'description' => $description,
+            'max_attempts' => $max_attempts,
+            'question_amount' => $question_amount,
+            'shuffle' => $shuffle,
+            'required_password' => $required_password,
+            'password' => $password,
+            'joohle_difficulty_id' => $difficulty,
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        
+        return redirect()->to('dashboard/tests');
     }
-    
+
+    public function createQuestion(): RedirectResponse {
+        $id = $this->request->getVar('testId');
+        $question = $this->request->getVar('question');
+        $answer = $this->request->getVar('answer');
+        $questionScore = $this->request->getVar('question-score');
+        $answerScore = $this->request->getVar('answer-score');
+        $description = $this->request->getVar('description');
+        $now = date('Y-m-d H:i:s');
+        
+        $idQ = $this->questionModel->insert([
+            'question' => $question,
+            'description' => $description,
+            'max_score' => $questionScore,
+            'joohle_test_id' => $id,
+            'joohle_question_type_id' => 1,
+            'created_at' => $now
+        ]);
+
+        $this->answerModel->insert([
+            'answer' => $answer,
+            'score' => $answerScore,
+            'joohle_question_id' => $idQ,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+        return redirect()->to('dashboard/edit-test/'.$id);
+    }
+    public function deleteQuestion($id): RedirectResponse {
+        $testId = $this->questionModel->where('id', $id)->findAll()[0]->joohle_test_id;
+        $this->questionModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('id', $id)->update();
+        $this->answerModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('joohle_question_id', $id)->update();
+        return redirect()->to('dashboard/edit-test/'.$testId);
+    }
 
     public function deleteUser($id): RedirectResponse {
         $this->ionAuth->deleteUser($id);
