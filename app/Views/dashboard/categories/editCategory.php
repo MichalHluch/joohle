@@ -13,6 +13,9 @@ echo form_open("dashboard/update-category/" . $category->id);
             <label for="name">Name:</label><input type="text" name="name" class="form-control" id="name" value="<?=$category->name?>" required>
         </div>
 
+        <label for="pic">Category Image</label>
+        <input type="file" name="pic" id="pic" class="form-control"/>
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary mt-5">Update</button>
         </div>

@@ -12,7 +12,7 @@ class CategoryModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'updated_at', 'deleted_at'];
+    protected $allowedFields    = ['name', 'updated_at', 'deleted_at', 'img_path'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

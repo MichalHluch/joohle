@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_difficulty` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_test` (
   `password` VARCHAR(255) NULL,
   `joohle_difficulty_id` INT NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_joohle_test_joohle_difficulty_idx` (`joohle_difficulty_id` ASC),
@@ -62,8 +62,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `joohle`.`joohle_category` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `img_path` VARCHAR(255) NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_attempt` (
   `started_at` DATETIME NOT NULL,
   `finished_at` DATETIME NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_joohle_attempt_joohle_test1_idx` (`joohle_test_id` ASC),
@@ -100,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_question_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(255) NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -117,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_question` (
   `joohle_test_id` INT NOT NULL,
   `joohle_question_type_id` INT NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_joohle_question_joohle_test1_idx` (`joohle_test_id` ASC),
@@ -144,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_answer` (
   `score` DOUBLE NOT NULL,
   `joohle_question_id` INT NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_joohle_answer_joohle_question1_idx` (`joohle_question_id` ASC),
@@ -163,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `joohle`.`joohle_test_has_joohle_category` (
   `joohle_test_id` INT NOT NULL,
   `joohle_category_id` INT NOT NULL,
   `deleted_at` DATETIME NULL,
-  `created_at` DATETIME NULL,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`joohle_test_id`, `joohle_category_id`),
   INDEX `fk_joohle_test_has_joohle_category_joohle_category1_idx` (`joohle_category_id` ASC),

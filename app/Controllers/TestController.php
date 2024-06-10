@@ -110,10 +110,11 @@ class TestController extends BaseController {
         }
     }
     public function testComplete(): string|RedirectResponse {
-        $finished = date('Y-m-d H:i:s', now());
-        $started = $this->session->timeAttempt;
-        $user = $this->ionAuth->user()->row();
         $testId = $this->request->getPost("testId");
+        $started = $this->session->timeAttempt;
+        if($started == null) return redirect()->to('test/'.$testId); //Cannot be null!!
+        $user = $this->ionAuth->user()->row();
+        $finished = date('Y-m-d H:i:s', now());
         $test = $this->testModel->orderBy('nazev', 'RANDOM')->where('id', $testId)->findAll()[0];
         $gainedScore = 0.0;
         $maximumScore = 0.0;
