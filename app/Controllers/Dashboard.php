@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use App\Models\TestModel;
+use App\Models\TestHasCategoryModel;
+use App\Models\DifficultyModel;
+use App\Models\QuestionModel;
+use App\Models\AnswerModel;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -17,6 +21,11 @@ class Dashboard extends BaseController {
     var $attemptModel;
     var $testModel;
     var $categoriesModel;
+    var $testHasCategoryModel;
+    var $difficultyModel;
+    var $questionModel;
+    var $answerModel;
+    
 
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) {
@@ -26,6 +35,10 @@ class Dashboard extends BaseController {
         $this->attemptModel = new AttemptModel();
         $this->testModel = new TestModel();
         $this->categoriesModel = new CategoryModel();
+        $this->testHasCategoryModel = new TestHasCategoryModel();
+        $this->difficultyModel = new DifficultyModel();
+        $this->questionModel = new QuestionModel();
+        $this->answerModel = new AnswerModel();
     }
 
     /**
@@ -47,8 +60,60 @@ class Dashboard extends BaseController {
      * Shows all tests
      */
     public function tests(): string {
-        return view("dashboard/tests", ["title" => "Dashboard | Tests"]);
+        return view("dashboard/tests/index", ["tests" => $this->testModel->where('deleted_at', null)->findAll(), "title" => "Dashboard | Categories"]);
     }
+    public function editTest($id): string {
+        $data = ['test' => $this->testModel->where("id", $id)->first(), 'difficulty' => $this->difficultyModel->orderBy('id', 'ASC')->findAll(), "title" => "Dashboard | Test Edit"];
+        return view("dashboard/tests/editTest", $data);
+    }
+    public function updateTest($id): RedirectResponse {
+        $name = $this->request->getVar('name');
+        $description = $this->request->getVar('description');
+        $max_attempts = $this->request->getVar('max_attempts');
+        if ($this->request->getVar('question_amount') == ""){
+            $question_amount = 1;
+        } else {
+            $question_amount = $this->request->getVar('question_amount');
+        }
+        if ($this->request->getVar('shuffle') == NULL){
+            $shuffle = 0;
+        } else {
+            $shuffle = 1;
+        }
+        if ($this->request->getVar('password') == ""){
+            $required_password = 0;
+        } else {
+            $required_password = 1;
+        }
+        $password = $this->request->getVar('password');
+        $difficulty = $this->request->getVar('difficulty');
+
+        $this->testModel->set([
+            'nazev' => $name,
+            'description' => $description,
+            'max_attempts' => $max_attempts,
+            'question_amount' => $question_amount,
+            'shuffle' => $shuffle,
+            'required_password' => $required_password,
+            'password' => $password,
+            'joohle_difficulty_id' => $difficulty,
+            'updated_at' => date('Y-m-d H:i:s')
+        ])->where('id', $id)->update();
+        
+        return redirect()->to('dashboard/tests');
+
+    }
+    public function deleteTest($id): string {
+        return view("dashboard/tests", ["title" => "Dashboard | Test delete"]);
+    }
+    public function addTest(): string {
+        return view("dashboard/tests/add", ["title" => "Dashboard | Test add"]);
+    }
+    public function createTest(): string {
+        $this->categoriesModel->insert(['name' => $this->request->getPost("name")]);
+        return redirect()->to('dashboard/categories');
+    }
+    
 
     public function deleteUser($id): RedirectResponse {
         $this->ionAuth->deleteUser($id);

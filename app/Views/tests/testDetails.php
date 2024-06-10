@@ -22,7 +22,7 @@ echo $this->section("content");
                 $password = ['id' => 'password', 'name' => 'password', 'type' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', "required" => true];
                 echo form_open("test-password");
                 echo '<input type="hidden" name="testId" value="' . $test->id . '">';
-                echo '<div class="input-group w-25">';
+                echo '<div class="input-group w-50">';
                 echo form_input($password);
                 echo '<button type="submit" class="btn btn-primary">Start</button>';
                 echo '</div>';

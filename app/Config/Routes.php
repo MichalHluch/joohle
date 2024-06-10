@@ -28,7 +28,13 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
 $routes->group('dashboard', ['filter' => 'dashboard'], function ($routes) {
     $routes->get('/', 'Dashboard::index');
+
     $routes->get('tests', 'Dashboard::tests');
+    $routes->get('edit-test/(:num)', 'Dashboard::editTest/$1');
+    $routes->post('update-test/(:num)', 'Dashboard::updateTest/$1');
+    $routes->delete('delete-test/(:num)', 'Dashboard::deleteTest/$1');
+    $routes->get('add-test', 'Dashboard::addTest');
+    $routes->post('create-test', 'Dashboard::createTest');
 
     //categories
     $routes->get('categories', 'Dashboard::categories');
