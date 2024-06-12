@@ -101,7 +101,11 @@ class Dashboard extends BaseController {
 
     }
     public function deleteTest($id): RedirectResponse {
-        return view("dashboard/tests", ["title" => "Dashboard | Test delete"]);
+        $this->testModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('id', $id)->update();
+        $testId = $this->questionModel->where('joohle_test_id', $id)->findAll()[0]->joohle_test_id;
+        $this->questionModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('joohle_test_id', $id)->update();
+        $this->answerModel->set(['deleted_at' => date('Y-m-d H:i:s')])->where('joohle_question_id', $id)->update();
+        return redirect()->to('dashboard/tests/');
     }
     public function addTest(): string {
         return view("dashboard/tests/addTest", ["title" => "Dashboard | Test add", 'difficulty' => $this->difficultyModel->orderBy('id', 'ASC')->findAll()]);

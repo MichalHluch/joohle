@@ -12,9 +12,11 @@ echo $this->section("content");
         foreach($categories as $category) {
             echo '<div class="card border-1 m-3" style="max-width: 10rem;">';
             $echo_card = '
-                <img src="'.base_url("/assets/img/" . $category->img_path).'" class="card-img-top" alt="cardimg">
-                <div class="card-body">
-                <p class="card-title text-dark text-center fw-bolder">'.$category -> name.'</p>
+                <div class="card-body d-flex justify-content-center">
+                <img src="'.base_url("/assets/img/" . $category->img_path).'" class="object-fit-cover rounded" alt="cardimg" style="height: 4rem; width: 8rem;">
+                </div>
+                <div class="card-footer mb-3 bg-transparent border-0">
+                <p class="text-dark text-center mb-auto fw-bolder mt-2">'.$category -> name.'</p>
                 </div></div>';
             echo anchor("/category/".$category -> id.'/', $echo_card, 'class="text-decoration-none"');
         }
@@ -31,7 +33,7 @@ echo $this->section("content");
                     <h5 class="card-title h4 text-dark fw-bolder">'.$test -> nazev.'</h5>
                     <p class="card-text text-muted fw-bolder"><span class="text-muted fw-normal">'.$test -> description.'</span></p>
                 </div>
-                <div class="card-footer mb-3 bg-transparent border-0">' . anchor('/test/' . $test->id, 'Start', 'class="btn btn-outline-primary"') . '</div>
+                <div class="card-footer mb-3 bg-transparent border-0">' . anchor('/test/' . $test->id, 'Open', 'class="btn btn-outline-primary"') . '</div>
           </div>';
         }
 

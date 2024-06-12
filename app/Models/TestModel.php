@@ -12,7 +12,7 @@ class TestModel extends Model {
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nazev', 'description', 'max_attempts', 'question_amount', 'shuffle', 'required_password', 'password', 'joohle_difficulty_id'];
+    protected $allowedFields    = ['deleted_at', 'nazev', 'description', 'max_attempts', 'question_amount', 'shuffle', 'required_password', 'password', 'joohle_difficulty_id'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

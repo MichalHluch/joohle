@@ -6,17 +6,17 @@ INSERT INTO joohle_difficulty (id, name) VALUES
 (2, 'medium'),
 (3, 'hard');
 
-INSERT INTO joohle_category (id, name) VALUES
-(1, 'Elektronika'),
-(2, 'Oblečení'),
-(3, 'Gramatika'),
-(4, 'Matematika'),
-(5, 'Informatika'),
-(6, 'Historie'),
-(7, 'Grafika'),
-(8, 'Literatura'),
-(9, 'Fyzika'),
-(10, 'Chemie');
+INSERT INTO joohle_category (id, name, img_path) VALUES
+(1, 'Elektronika', 'elektronika.jpg'),
+(2, 'Oblečení', 'placeholder.jpg'),
+(3, 'Gramatika', 'placeholder.jpg'),
+(4, 'Matematika', 'placeholder.jpg'),
+(5, 'Informatika', 'placeholder.jpg'),
+(6, 'Historie', 'placeholder.jpg'),
+(7, 'Grafika', 'placeholder.jpg'),
+(8, 'Literatura', 'placeholder.jpg'),
+(9, 'Fyzika', 'placeholder.jpg'),
+(10, 'Chemie', 'chemie.jpg');
 
 INSERT INTO joohle_test (id, nazev, description, max_attempts, question_amount, shuffle, required_password, password, joohle_difficulty_id) VALUES 
 (1, 'Chytrý telefon', 'Test chytrých telefonů', 3, 25, 1, 0, NULL, 2),
